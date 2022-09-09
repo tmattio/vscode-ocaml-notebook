@@ -92,7 +92,9 @@ let deserializeNotebook ~content ~token:_ =
           (y : Jupyter_notebook.output list) cell =
         match y with [] -> [] | h :: t -> NotebookCell.outputs cell
       in
-      let vscode_output = convert_cell_output_to_vscode_output cell_output cell in
+      let vscode_output =
+        convert_cell_output_to_vscode_output cell_output cell
+      in
       let () = NotebookCellData.set_outputs notebook_cell_data vscode_output in
       (* Build a  NotebookData.t record structure *)
       NotebookData.make ~cells
